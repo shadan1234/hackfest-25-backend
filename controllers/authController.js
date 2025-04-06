@@ -1,4 +1,4 @@
-import User from "../models/UserSchema.js";
+import User from "../models/userSchema.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -93,6 +93,27 @@ export const login = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to login"
+    });
+  }
+};
+
+export const logout = async (req, res) => {
+  try {
+    // In a token-based authentication system, logout happens client-side
+    // by removing the token from storage
+    
+    // For enhanced security, you could implement a token blacklist
+    // This would require additional backend storage like Redis
+    
+    res.status(200).json({
+      success: true,
+      message: "Logged out successfully"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong"
     });
   }
 };
